@@ -2,7 +2,7 @@
 
 ## How to use
 
-1. Install package by using
+1. Install package by using<br/>
     `npm i errajswami/vue-scan-com.git` (not released at npm yet)
 2. Add following line at `scripts` of `package.json`
 
