@@ -5,7 +5,7 @@ This package is used to find out the given component is used under which other c
 ## How to use
 
 1. Install package by using<br/>
-    `npm i errajswami/vue-scan-com.git` (not released at npm yet)
+    `npm i vue-scan-com`
 2. Add following line at `scripts` of `package.json`
 
     ```json
