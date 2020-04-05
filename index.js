@@ -1,7 +1,8 @@
 const fs = require('fs');
 const glob = require("glob");
+const {config} = require("./config");
 
-const patternToMatchFileNames = "**/*.vue";
+const patternToMatchFileNames = config.patternToMatchFileNames;
 
 function getComponentName() {
   const cmdArguments = process.argv.slice(0);
