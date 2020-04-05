@@ -1,5 +1,7 @@
 # vue-scan-com
 
+This package is used to find out the given component is used under which other components as child component.
+
 ## How to use
 
 1. Install package by using<br/>
