@@ -16,7 +16,7 @@
 
 ## Config file
 
-Create `vue-scan-com.config.json` in root of project
+Create `vue-scan-com.config.json` in root of project<br/>
 Following are available options
 
 ```json
