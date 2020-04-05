@@ -4,8 +4,12 @@ This package is used to find out the given component is used under which other c
 
 ## How to use
 
-1. Install package by using<br/>
-    `npm i vue-scan-com`
+1. Install package by using
+
+    ```bash
+    npm i vue-scan-com
+    ```
+
 2. Add following line at `scripts` of `package.json`
 
     ```json
@@ -14,7 +18,11 @@ This package is used to find out the given component is used under which other c
     }
     ```
 
-3. Run `npm vueScanCom component_name`
+3. Run
+
+    ```bash
+    npm vueScanCom component_name
+    ```
 
 ## Config file
 
