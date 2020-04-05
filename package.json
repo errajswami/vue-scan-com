@@ -1,6 +1,6 @@
 {
   "name": "vue-scan-com",
-  "version": "1.0.2",
+  "version": "1.0.4",
   "description": "This finds given comp used in which components",
   "main": "index.js",
   "scripts": {
@@ -12,7 +12,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "glob": "^7.1.6",
-    "path": "^0.12.7"
-  }
+    "glob": "^7.1.6"
+  },
+  "repository":"https://github.com/errajswami/vue-scan-com",
+  "keywords": [
+    "vue", "vueJs", "vue-component", "vue2"
+  ]
 }
