@@ -1,28 +1,62 @@
 const fs = require('fs');
-const path = require('path')
+const glob = require("glob");
 
-var glob = require("glob");
-const compName = 'advMaskedinput';
-let matchedFiles = [];
+const patternToMatchFileNames = "**/*.vue";
 
-function getMatchedFiles(componentName, callBack){
-glob("**/*.vue", function (er, files) {
-  if (files) {
-    files.forEach((file) => {
-      console.log(path.basename(file, '.vue'));
-      const doc = fs.readFileSync(file, 'utf-8');
-      const pattern = `import.*${compName}(.vue)*`;
-      const isMatched = doc.match(new RegExp(pattern, "gm"))
-      if(isMatched) {
-        matchedFiles.push(file);
-      }
-    })
-    callBack(matchedFiles)
-  }
-})
+function getComponentName() {
+  const cmdArguments = process.argv.slice(0);
+  return cmdArguments[2] ? cmdArguments[2] : null;
 }
 
-getMatchedFiles(compName, (matchedFiles) =>{
-  console.log(matchedFiles);
-});
+function getFileListToMatch(callback) {
+  glob(patternToMatchFileNames, function (er, files) {
+    if (files) {
+      return callback(files);
+    }
+    return callback(null);
+  });
+}
 
+function isComponentUsedInFile(compName, fileContent) {
+
+  const pattern = `import.*${compName}(.vue)*`;
+  const isMatched = fileContent.match(new RegExp(pattern, "gm"))
+  return isMatched;
+}
+
+function findUsedComponents(compName, files, callBack) {
+  let matchedFiles = [];
+  files.forEach((file) => {
+    console.log(`* Scanning ${file}`);
+    const fileContent = fs.readFileSync(file, 'utf-8');
+    const isMatched = isComponentUsedInFile(compName, fileContent)
+    if (isMatched) {
+      matchedFiles.push(file);
+    }
+  })
+  callBack(matchedFiles)
+}
+
+function outputResult(output) {
+  const compName = getComponentName();
+  console.log("\n")
+  console.log(`${compName} is used in following components`)
+  console.log(output);
+}
+
+function main() {
+  let matchedFiles = [];
+  const compName = getComponentName();
+  getFileListToMatch(function (files) {
+    if (!(files && Array.isArray(files) && files.length > 0)) {
+      outputResult([]);
+      return;
+    }
+
+    findUsedComponents(compName, files, function (usedComponents) {
+      outputResult(usedComponents);
+    })
+  })
+}
+
+main();
