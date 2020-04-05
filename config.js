@@ -1,7 +1,11 @@
+let externalConfig = {};
+try{
+    externalConfig = require("../../vue-scan-com.config.json");
+}catch(error) {}
+
 const defaultConfig = {
     patternToMatchFileNames: "**/*.vue"
 };
 
-export {
-    defaultConfig
-};
+const config = {...defaultConfig, ...externalConfig};
+exports.config = config;
